@@ -25,7 +25,8 @@ const ToDo = observer((props) => {
             </div>
             <div className="todo-controllers">
                 <input onClick={switchDoneStatus} type="checkbox" onChange={()=>console.log(`checked ${props.data.id}`)} checked={props.data.isdone ? true : false}/>
-                <FontAwesomeIcon   
+                <FontAwesomeIcon 
+                    className="delete-todo"  
                     onClick={deleteTodo}  
                     icon={faTrash} 
                 />

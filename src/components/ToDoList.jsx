@@ -20,6 +20,14 @@ const ToDoList = observer(() => {
     return (
         <div className="toDosList">
             {
+                toDos.length === 0 && (
+                    <>
+                        <p>No ToDos yet...  </p>
+                        <p>Click on the + button on the bottom right to add one :) </p>
+                    </>    
+                    )
+            }
+            {
                 unDoneToDos.length > 0  
                     ?   <>
                             <h1>To Do</h1>
