@@ -6,8 +6,8 @@ import {ToDosContext} from '../context/toDosContext'
 const ToDoList = observer(() => {
     const toDoStore = useContext(ToDosContext)
     const {toDos} = useContext(ToDosContext)
-    const doneToDos = toDos.filter(t=> t.isDone === true)
-    const unDoneToDos = toDos.filter(t=> t.isDone !== true)
+    const doneToDos = toDos.filter(t=> t.isdone === true)
+    const unDoneToDos = toDos.filter(t=> t.isdone !== true)
 
     useEffect(() => {
         const func = async () =>{

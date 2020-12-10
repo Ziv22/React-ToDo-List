@@ -24,7 +24,7 @@ router.post("/toDo", async (req,res) =>{
 })
 router.put("/toDo/:id", async (req,res) =>{
     try{
-        const toDos = await dao.update(req.params.id, req.body)
+        const toDos = await dao.update(req.body)
         res.send(toDos)
     }
     catch(err){

@@ -16,7 +16,7 @@ const ToDo = observer((props) => {
     }
 
     return (
-        <div className={`todo-card ${props.data.isDone ? "isDone" : ""}`} >
+        <div className={`todo-card ${props.data.isdone ? "isDone" : ""}`} >
             <div className="todo-content">
                 <p className="todo-title">{props.data.title}</p>
                 <hr/>
@@ -24,7 +24,7 @@ const ToDo = observer((props) => {
                 
             </div>
             <div className="todo-controllers">
-                <input onClick={switchDoneStatus} type="checkbox" checked={props.data.isDone ? true : false}/>
+                <input onClick={switchDoneStatus} type="checkbox" onChange={()=>console.log(`checked ${props.data.id}`)} checked={props.data.isdone ? true : false}/>
                 <FontAwesomeIcon   
                     onClick={deleteTodo}  
                     icon={faTrash} 

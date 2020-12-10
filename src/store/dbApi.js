@@ -13,7 +13,7 @@ class dbAPI{
     }
     add = async todo =>{
         try{
-            const modifiedTodo = {...todo , id:uid(), isDone:false}
+            const modifiedTodo = {...todo , id:uid(), isdone:false}
             const data = await axios.post(this.baseUrl , modifiedTodo)
             return data.data
         }
@@ -24,6 +24,15 @@ class dbAPI{
     delete = async id =>{
         try{
             const data = await axios.delete(`${this.baseUrl}/${id}`)
+            return data.data
+        }
+        catch(err){
+            return err
+        }
+    }
+    update = async (todo) =>{
+        try{
+            const data = await axios.put(`${this.baseUrl}/${todo.id}` , todo)
             return data.data
         }
         catch(err){

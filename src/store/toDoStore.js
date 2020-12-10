@@ -22,6 +22,7 @@ export default class ToDoStore{
     fetchToDos = async () =>{
         const data = await this.dbApi.getToDos()
         this.toDos = data 
+        console.log(this.toDos);
     }
 
     _findIndexById = id =>{
@@ -42,21 +43,15 @@ export default class ToDoStore{
 
     switchDoneStatus = id =>{
         const index = this._findIndexById(id)
-        this.toDos[index].isDone = !this.toDos[index].isDone
+        const currentToDo = this.toDos[index]
+        currentToDo.isdone = !currentToDo.isdone
+        this.editTodo(currentToDo)
     }
 
-    editTodo = (id,title , description , priority) =>{
-        const index = this._findIndexById(id)
-        const currentToDo = this.toDos[index]
-        if(title){
-            currentToDo.title = title
-        }
-        if(description){
-            currentToDo.description = description
-        }
-        if(  -1 > priority > 6 ){
-            currentToDo.priority = priority
-        }
+    editTodo = async (todo) =>{
+        const index = this._findIndexById(todo.id)
+        this.toDos.splice(index, 1 , todo)
+        await this.dbApi.update(this.toDos[index])
     }
     switchAddToDo = () =>{
         this.showAddToDoScreen = ! this.showAddToDoScreen

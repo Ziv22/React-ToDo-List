@@ -15,7 +15,7 @@ class Dao{
     
     insert  = async toDo =>{
         try{
-            const query = `INSERT INTO todo VALUES('${toDo.id}','${toDo.title}', '${toDo.description}',${toDo.priority}, ${toDo.isDone})`
+            const query = `INSERT INTO todo VALUES('${toDo.id}','${toDo.title}', '${toDo.description}',${toDo.priority}, ${toDo.isdone})`
             const res = await client.query(query)
             const newMongoTodo = await new ToDo(toDo)
             newMongoTodo.save()
@@ -27,11 +27,19 @@ class Dao{
         
     }
 
-    update  = async (id,editedToDo) =>{
+    update  = async editedToDo =>{
         try{
-            const query = `UPDATE todo SET title = ${editedToDo.title}', description = '${editedToDo.description}',priority = ${editedToDo.priority},isDone = ${editedToDo.isDone} WHERE id = '${editedToDo.id}'`
+            console.log(editedToDo);
+            const query = `UPDATE todo 
+                            SET title = '${editedToDo.title}',
+                            description = '${editedToDo.description}',
+                            priority = ${editedToDo.priority},
+                            isdone = ${editedToDo.isdone} 
+                            WHERE id = '${editedToDo.id}'`
+                            
+            console.log(query);
             const res = await client.query(query)
-            await ToDo.findByIdAndUpdate(id , editedToDo)
+            await ToDo.where('id' , editedToDo.id).update(editedToDo)
             return res.rows
         }
         catch(err){

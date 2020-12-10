@@ -7,7 +7,7 @@ const toDoSchema = new Schema({
     title:          String, 
     description:    String, 
     priority:       Number,
-    isDone:         Boolean
+    isdone:         Boolean
 })
 
 const ToDo = mongoose.model("ToDoSchema", toDoSchema)
